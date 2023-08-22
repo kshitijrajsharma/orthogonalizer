@@ -2,7 +2,12 @@ import json
 
 from shapely.geometry import Polygon, mapping
 
-from .utils import apply_algorithm, validate_geojson
+from .utils import (
+    apply_algorithm,
+    validate_geojson,
+    validate_max_angle_change,
+    validate_skew_tolerance,
+)
 
 
 def othogonalize_poly(geojson_str, maxAngleChange=15, skewTolerance=15):
@@ -34,20 +39,19 @@ def othogonalize_poly(geojson_str, maxAngleChange=15, skewTolerance=15):
         raise ValueError(
             "Invalid input. Please provide a valid GeoJSON string or JSON object."
         )
+    validate_max_angle_change(maxAngleChange)
+    validate_skew_tolerance(skewTolerance)
     input_features = geojson["features"]
     output_features = []
     for feature in input_features:
-        if feature["type"] != "Polygon":
+        if feature["geometry"]["type"] != "Polygon":
             raise ValueError("Only polygons are supported")
         orthogonalized_poly = apply_algorithm(
-            Polygon(feature["coordinates"][0]), maxAngleChange, skewTolerance
+            Polygon(feature["geometry"]["coordinates"][0]),
+            maxAngleChange,
+            skewTolerance,
         )
-
-        orthogonalized_poly_geojson = {
-            "type": "Feature",
-            "properties": {},
-            "geometry": json.dumps(mapping(orthogonalized_poly)),
-        }
-        output_features.append(orthogonalized_poly_geojson)
+        feature["geometry"] = mapping(orthogonalized_poly)
+        output_features.append(feature)
     geojson["features"] = output_features
     return geojson

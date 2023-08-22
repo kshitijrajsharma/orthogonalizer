@@ -1,0 +1,36 @@
+# Byte-compiled / optimized files
+*.py[cod]
+__pycache__/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Environment variables
+.env
+
+# IDE files
+.vscode/
+*.pyc
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.pyproj
+*.user
+*.bak
+
+# Testing
+htmlcov/
+.coverage
+.tox/
+
+# Dependency management
+pip-lock.txt
+pipenv.lock
+
+# virtualenv
+env
+venv

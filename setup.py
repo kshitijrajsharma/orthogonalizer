@@ -26,7 +26,7 @@ setup(
         "Programming Language :: Python :: 3.9",
     ],
     install_requires=[
-        "shapely",
-        "geopandas",
+        "shapely<=2.0.1",
+        "geopandas<=2.0.3",
     ],
 )

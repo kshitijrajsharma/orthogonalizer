@@ -1,5 +1,5 @@
 ### Polygon Orthogonalizer
-Pip implementation for polygons of [orthogonalize-polygon](https://github.com/Mashin6/orthogonalize-polygon/tree/master) which performs squaring/orthogonalization of polygons, in other words making all its angles 90˚ or 180˚, which is usefull for automated adjustment of building footprint shapes. Script uses GeoPandas and Shapely packages and is an improved implementation of JOSM Orthogonalize function. Credits to all the respective involved authors
+Pip implementation for polygons of [orthogonalize-polygon](https://github.com/Mashin6/orthogonalize-polygon/tree/master) which is an improved implementation of JOSM Orthogonalize function (JOSM Q Function). Credits to all the respective involved authors
 
 ## Installation
 
@@ -22,6 +22,21 @@ orthogonalized_poly = othogonalize_poly(geojson_str)
 
 print(orthogonalized_poly)
 ```
+
+## Options : 
+
+**maxAngleChange (int, optional)**: 
+angle (0,45> degrees. Sets the maximum angle deviation
+from the cardinal direction for the segment to be still
+considered to continue in the same direction as the
+previous segment. Defaults to 15.
+
+**skewTolerance (int, optional)**: 
+angle <0,45> degrees. 
+Sets skew tolerance for segments that
+are at 45˚±Tolerance angle from the overal rectangular shape
+of the polygon. Usefull when preserving e.g. bay windows on a
+house. Defaults to 15.
 
 ## Contributing
 

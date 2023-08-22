@@ -339,3 +339,13 @@ def apply_algorithm(polygon, maxAngleChange, skewTolerance):
         polyOrthog[0].exterior, [inner.exterior for inner in polyOrthog[1:]]
     )
     return polyOrthog
+
+
+def validate_max_angle_change(angle):
+    if not (0 <= angle <= 45):
+        raise ValueError("maxAngleChange must be between 0 and 45 degrees")
+
+
+def validate_skew_tolerance(angle):
+    if not (0 <= angle <= 45):
+        raise ValueError("skewTolerance must be between 0 and 45 degrees")
