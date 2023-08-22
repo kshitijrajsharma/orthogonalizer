@@ -41,17 +41,29 @@ def othogonalize_poly(geojson_str, maxAngleChange=15, skewTolerance=15):
         )
     validate_max_angle_change(maxAngleChange)
     validate_skew_tolerance(skewTolerance)
-    input_features = geojson["features"]
-    output_features = []
-    for feature in input_features:
-        if feature["geometry"]["type"] != "Polygon":
-            raise ValueError("Only polygons are supported")
+    if geojson["type"] == "FeatureCollection":
+        input_features = geojson["features"]
+        output_features = []
+        for feature in input_features:
+            if feature["geometry"]["type"] != "Polygon":
+                raise ValueError("Only polygons are supported")
+            orthogonalized_poly = apply_algorithm(
+                Polygon(feature["geometry"]["coordinates"][0]),
+                maxAngleChange,
+                skewTolerance,
+            )
+            feature["geometry"] = mapping(orthogonalized_poly)
+            output_features.append(feature)
+        geojson["features"] = output_features
+        return geojson
+    if geojson["type"] == "Polygon":
+        if not geojson["coordinates"]:
+            raise ValueError("Couldn't find coordinate sets on polygon")
+
         orthogonalized_poly = apply_algorithm(
-            Polygon(feature["geometry"]["coordinates"][0]),
+            Polygon(geojson["coordinates"][0]),
             maxAngleChange,
             skewTolerance,
         )
-        feature["geometry"] = mapping(orthogonalized_poly)
-        output_features.append(feature)
-    geojson["features"] = output_features
-    return geojson
+        return mapping(orthogonalized_poly)
+    return ValueError("Unsupported input provided")

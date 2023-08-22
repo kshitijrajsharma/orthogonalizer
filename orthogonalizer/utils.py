@@ -178,15 +178,11 @@ def validate_geojson(geojson_str):
     except json.JSONDecodeError:
         raise ValueError("Invalid GeoJSON. Please provide a valid GeoJSON string.")
 
-    if (
-        not isinstance(geojson, dict)
-        or "type" not in geojson
-        or "features" not in geojson
-    ):
+    if not isinstance(geojson, dict) or "type" not in geojson:
         raise ValueError("Invalid GeoJSON. Please provide a valid GeoJSON format.")
-
-    if not geojson["features"]:
-        raise ValueError("Empty GeoJSON features.")
+    if "features" in geojson:
+        if not geojson["features"]:
+            raise ValueError("Empty GeoJSON features.")
 
     return geojson
 

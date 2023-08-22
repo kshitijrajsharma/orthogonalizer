@@ -7,7 +7,7 @@ with io.open("README.md", encoding="utf-8") as f:
 
 setup(
     name="orthogonalizer",
-    version="0.0.3",
+    version="0.0.4",
     url="https://github.com/kshitijrajsharma/orthogonalizer",
     author="Kshitij Raj Sharma",
     author_email="skshitizraj@gmail.com",
