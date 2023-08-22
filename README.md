@@ -38,6 +38,11 @@ are at 45˚±Tolerance angle from the overal rectangular shape
 of the polygon. Usefull when preserving e.g. bay windows on a
 house. Defaults to 15.
 
+## Example 
+Input ---> Output
+![image](https://github.com/kshitijrajsharma/orthogonalizer/assets/36752999/97d2233c-c8c9-4417-80e1-16964f48383f)
+
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request. When contributing to this project, please follow the Contributing Guidelines.
