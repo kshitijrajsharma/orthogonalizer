@@ -18,7 +18,7 @@ setup(
     license="GPL-3.0",
     classifiers=[
         "Development Status :: 3 - Alpha",
-        "License :: GPL-3.0 license",
+        "License :: OSI Approved :: GNU General Public License v3.0",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
